@@ -5,11 +5,40 @@ import './todo-list-item.css';
 // в отличии от функции класс не принимает props на вход
 // props хранятся в свойстве this.props
 export default class TodoListItem extends React.Component {
+ /*
+  constructor() {
+    super();
+    // state должен быть объектом,  где сохраняем информацию
+    // создаем в нем свойство done, которое по умолчанию false
+    this.state = {
+      done: false,
+    }
+  }
+  */
+ // код выше можно написать короче:
+
+  state = {
+    done: false,
+  };
+
+  // передаем в функцию setState объект с изменениями, которые хотим внести в state
+  // в данном случае - по клику меняем состояние done на true
+  onLabelClick = () => {
+    this.setState({
+      done: true
+    })
+  };
 
 
   render() {
 
     const { label, important = false } = this.props; 
+    const { done } = this.state;
+
+    let classNames = "todo-list-item";
+    if (done) {
+      classNames += " done";
+    }
 
     const style = {
       color: important ? 'steelblue' : 'black',
@@ -17,10 +46,13 @@ export default class TodoListItem extends React.Component {
     };
 
     return (
-      <span className="todo-list-item">
+      // если добавить done, то будет зачеркнуто
+      <span className={classNames}> 
         <span
           className="todo-list-item-label"
-          style={style}>
+          style={style}
+          onClick={ this.onLabelClick }
+        >
           {label}
         </span>
   
@@ -37,7 +69,6 @@ export default class TodoListItem extends React.Component {
     );
 
   }
-
 }
 
 
