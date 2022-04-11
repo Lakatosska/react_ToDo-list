@@ -25,14 +25,18 @@ export default class TodoListItem extends React.Component {
   // передаем в функцию setState объект с изменениями, которые хотим внести в state
   // в данном случае - по клику меняем состояние done на true
   onLabelClick = () => {
-    this.setState({
-      done: true
-    })
+    this.setState(({done}) => {
+      return {
+        done: !done
+      };
+    });
   };
 
   onMarkImportant = () => {
-    this.setState({
-      important: true
+    this.setState(({important}) => {
+      return {
+        important: !important
+      };
     });
   };
 
