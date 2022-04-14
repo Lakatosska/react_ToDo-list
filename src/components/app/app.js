@@ -31,13 +31,25 @@ export default class App extends React.Component {
     this.setState(({ todoData }) => {
 
       const idx = todoData.findIndex((el) => el.id === id);
-      console.log(idx);
-      todoData.splice(idx, 1);
+      //console.log(idx);
+      //todoData.splice(idx, 1);
+
+      // [a, b, c, d, e]
+      // [a, b,    d, e]
+
+      // slice в отличие от splice не изменяет массив
+      const before = todoData.slice(0, idx)
+      // не передаем второй аргумент => до конца
+      const after = todoData.slice(idx + 1)
+      
+      // состоит из всех элементов before и after
+      const newArray = [
+        ...before, ...after
+      ];
 
       return {
-        todoData: todoData
+        todoData: newArray
       }
-
     });
   };
 
