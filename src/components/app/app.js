@@ -4,6 +4,7 @@ import AppHeader from '../app-header/app-header';
 import SearchPanel from '../search-panel/search-panel';
 import TodoList from '../todo-list/todo-list';
 import ItemStatusFilter from '../item-status-filter/item-status-filter';
+import ItemAddForm from '../item-add-form/item-add-form';
 
 import './app.css';
 
@@ -53,21 +54,32 @@ export default class App extends React.Component {
     });
   };
 
+  addItem = () => {
+    console.log('хочу добавить элемент')
+  }
+
   render() {
+
     return (
     <div className="todo-app">
+
       <AppHeader toDo={1} done={3} />
+
       <div className="top-panel d-flex">
         <SearchPanel />
         <ItemStatusFilter />
       </div>
 
       <TodoList todos={ this.state.todoData } 
-      onDeleted={ this.deleteItem }/>
+        onDeleted={ this.deleteItem }/>
+
+      <ItemAddForm />   
+
     </div>
     )
   }
 };
+
 
 
 
