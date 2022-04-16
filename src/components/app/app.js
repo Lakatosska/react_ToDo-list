@@ -18,6 +18,8 @@ console.log(el); // очень легковесный объект с миним
 
 export default class App extends React.Component { 
 
+  maxId = 100;
+
   state = {
     todoData: [
       { label: 'Drink Coffee', important: false, id: 1 },
@@ -54,8 +56,34 @@ export default class App extends React.Component {
     });
   };
 
-  addItem = () => {
-    console.log('хочу добавить элемент')
+  addItem = (text) => {
+
+    // generate id 
+    const newItem = {
+      label: text,
+      important: false,
+      id: this.maxId++
+    };
+
+    this.setState(({todoData}) => {
+
+      // const newArray = todoData.push(newItem); - так нельзя, т.к. изменяем массив!
+
+      const newArray = [
+        ...todoData, newItem
+      ];
+
+      return {
+        todoData: newArray
+      }
+    })
+
+
+    // add element in array ?
+
+
+    console.log('хочу добавить элемент', text)
+    
   }
 
   render() {
@@ -73,7 +101,7 @@ export default class App extends React.Component {
       <TodoList todos={ this.state.todoData } 
         onDeleted={ this.deleteItem }/>
 
-      <ItemAddForm />   
+      <ItemAddForm onItemAdded={ this.addItem } />   
 
     </div>
     )
