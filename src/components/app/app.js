@@ -84,7 +84,15 @@ export default class App extends React.Component {
 
     console.log('хочу добавить элемент', text)
     
-  }
+  };
+
+  onToggleImportant = (id) => {
+    console.log('Toggle Important', id);
+  };
+
+  onToggleDone = (id) => {
+    console.log('Toggle Done', id);
+  };
 
   render() {
 
@@ -99,7 +107,10 @@ export default class App extends React.Component {
       </div>
 
       <TodoList todos={ this.state.todoData } 
-        onDeleted={ this.deleteItem }/>
+        onDeleted={ this.deleteItem }
+        onToggleImportant={this.onToggleImportant}
+        onToggleDone={this.onToggleDone} // получил новый ивент
+      />
 
       <ItemAddForm onItemAdded={ this.addItem } />   
 

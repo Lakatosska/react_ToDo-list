@@ -40,7 +40,7 @@ const TodoList = ({ todos }) => {
 };
 */
 
-const TodoList = ({ todos, onDeleted }) => {
+const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
 
   const elements = todos.map((item) => {
 
@@ -51,6 +51,8 @@ const TodoList = ({ todos, onDeleted }) => {
         <TodoListItem 
           { ...itemProps }
           onDeleted={() => onDeleted(id)}
+          onToggleImportant={() => onToggleImportant(id)}
+          onToggleDone={() => onToggleDone(id)} // далее надо вызвать их в todoListItem
         /> 
       </li>
     )
