@@ -14,7 +14,7 @@ export default class TodoListItem extends React.Component {
       done: false,
     }
   }
-  */
+  
  // код выше можно написать короче:
 
   state = {
@@ -39,12 +39,14 @@ export default class TodoListItem extends React.Component {
       };
     });
   };
-
+*/
 
   render() {
 
-    const { label, onDeleted, onToggleImportant, onToggleDone } = this.props; 
-    const { done, important } = this.state;
+    const { label, onDeleted, 
+            onToggleImportant, 
+            onToggleDone,
+            important, done } = this.props; 
 
     let classNames = "todo-list-item";
     if (done) {
