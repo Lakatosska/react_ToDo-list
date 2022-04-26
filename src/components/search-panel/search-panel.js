@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './search-panel.css';
 
-const SearchPanel = () => {
-  // return <input placeholder='search'/>
-  const searchText = 'Type here to search...';
-  const searchStyle = {
-    fontSize: '20px'
-  }
+export default class SearchPanel extends Component {
 
-  return <input 
-    style = {searchStyle}
-    placeholder = {searchText} //переменная теперь используется как placeholder
-    disabled />; // эквивалент: disabled={true}. если не передать значение, то по умолчанию оно true
+  state = {
+    term: ''
+  };
 
-};
+  onTermChange = (e) => {
+    const {onSearchChange = () => {}} = this.props;
+    this.setState({
+      term: e.target.value
+    });
 
-export default SearchPanel;
+    onSearchChange(e.target.value);
+  };
+
+
+  // делаем элемент контролируемым - назначаем value из стейта
+
+  render() {
+    return (
+      <input type="text"
+             className="form-control search-input"
+             placeholder="type to search"
+             value={this.state.term}
+             onChange={ this.onTermChange } />
+    );
+  };
+}

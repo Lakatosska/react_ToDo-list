@@ -17,6 +17,9 @@ export default class ItemAddForm extends React.Component {
   onSubmit = (evt) => {
     evt.preventDefault();
     this.props.onItemAdded(this.state.label);
+    this.setState({
+      label: ''
+    });
   }
 
   render() {
@@ -29,7 +32,8 @@ export default class ItemAddForm extends React.Component {
                className='form-control' 
                onChange={this.onLabelChange}
                placeholder='What needs to be done'
-               value={this.state.label}/>
+               //чтобы сделать элемент контроллируемым, надо чтобы значение (value) устанавливалось из состояния элемента
+               value={this.state.label}/> 
         <button 
           className="btn btn-outline-secondary">
           <i className="fa" />
